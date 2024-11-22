@@ -1,9 +1,32 @@
-version: '2'
 services:
-  php:
-    image: yiisoftware/yii2-php:7.4-apache
+
+  nginx:
+    image: nginx:latest
     volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+      - ./:/var/www/testYiiProject
+      - ./_docker/nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - '8000:80'
+      - "8876:80"
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: _docker/php/Dockerfile
+    volumes:
+      - ./:/var/www/testYiiProject
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_USER: mike
+      MYSQL_DATABASE: testYiiProject_db
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./tmp/db:/var/lib/mysql
