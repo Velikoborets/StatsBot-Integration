@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  *
- * @property Users[] $users
+ * @property User[] $users
  */
 class Role extends \yii\db\ActiveRecord
 {
@@ -51,6 +51,6 @@ class Role extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(Users::class, ['role_id' => 'id']);
+        return $this->hasMany(User::class, ['role_id' => 'id']);
     }
 }
