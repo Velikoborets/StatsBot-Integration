@@ -9,7 +9,7 @@
  * @method void expectTo($prediction)
  * @method void expect($prediction)
  * @method void amGoingTo($argumentation)
- * @method void am($role)
+ * @method void am($roles)
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = NULL)

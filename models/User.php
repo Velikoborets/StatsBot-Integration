@@ -12,7 +12,7 @@ namespace app\models;
  * @property string $created_at
  * @property string|null $updated_at
  *
- * @property Role $role
+ * @property Role $roles
  */
 class User extends \yii\db\ActiveRecord
 {

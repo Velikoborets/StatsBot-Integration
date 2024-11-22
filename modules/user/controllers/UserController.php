@@ -10,7 +10,7 @@ class UserController extends Controller
     public function actionIndex()
     {
         // Получаем всех пользователей с ролями
-        $users = User::find()->with('role')->all();
+        $users = User::find()->with('roles')->all();
         return $this->render('index', ['users' => $users]);
     }
 
