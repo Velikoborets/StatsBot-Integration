@@ -19,7 +19,7 @@ $config = [
             'class' => 'app\modules\user\Module',
         ],
         'roles' => [
-            'class' => 'app\modules\roles\controllers\RoleController',
+            'class' => 'app\modules\roles\Module',
         ],
     ],
     'components' => [

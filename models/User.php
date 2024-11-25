@@ -30,7 +30,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'email'], 'required'],
+            [['username', 'email', 'role_id'], 'required'],
             [['role_id'], 'integer'],
             [['username', 'email'], 'string', 'max' => 255],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class,

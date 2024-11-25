@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $roles app\models\Role[] */
+/* @var $roles app\models\Role */
 
 $this->title = 'Roles';
 $this->params['breadcrumbs'][] = $this->title;
