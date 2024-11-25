@@ -10,8 +10,13 @@ class UserController extends Controller
     public function actionIndex()
     {
         // Получаем всех пользователей с ролями
-        $users = User::find()->with('roles')->all();
-        return $this->render('index', ['users' => $users]);
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => User::find()->with('role'),
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionCreate()

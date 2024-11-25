@@ -1,7 +1,10 @@
 <?php
 
+use yii\helpers\ArrayHelper;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$routes = require __DIR__ . '/routes.php';
 
 $config = [
     'id' => 'basic',
@@ -10,6 +13,14 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+    ],
+    'modules' => [
+        'user' => [
+            'class' => 'app\modules\user\Module',
+        ],
+        'roles' => [
+            'class' => 'app\modules\roles\controllers\RoleController',
+        ],
     ],
     'components' => [
         'request' => [
@@ -24,7 +35,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'site/er   ror',
         ],
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
@@ -42,14 +53,12 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        // настройка Url - manager
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => $routes, // Используем маршруты из файла
         ],
-        */
     ],
     'params' => $params,
 ];
@@ -69,6 +78,12 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+}
+
+// Проверяем наличие локального конфигурационного файла
+if (file_exists(__DIR__ . '/web-local.php')) {
+    $localConfig = require __DIR__ . '/web-local.php';
+    $config = ArrayHelper::merge($config, $localConfig);
 }
 
 return $config;
