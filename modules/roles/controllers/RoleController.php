@@ -2,8 +2,8 @@
 
 namespace app\modules\roles\controllers;
 
+use app\modules\roles\models\Role;
 use yii\web\Controller;
-use app\models\Role;
 
 class RoleController extends Controller
 {

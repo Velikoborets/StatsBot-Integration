@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Выберите чем хотите управлять!';
+$this->title = 'Выберите модуль для управления';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

@@ -2,8 +2,8 @@
 
 namespace app\modules\user\controllers;
 
+use app\modules\user\models\User;
 use yii\web\Controller;
-use app\models\User;
 
 class UserController extends Controller
 {

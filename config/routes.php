@@ -22,6 +22,7 @@ return [
     // '<controllers:\w+>/<action:\w+>/<id:\d+>' => '<controllers>/<action>',
     // '<controllers:\w+>/<action:\w+>' => '<controllers>/<action>',
 
+    // Общие роуты для модулей
     '<module:\w+>/<controllers:\w+>/<id:\d+>' => '<module>/<controllers>/view?id=',
     '<module:\w+>/<controllers:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controllers>/<action>',
     '<module:\w+>/<controllers:\w+>/<action:\w+>' => '<module>/<controllers>/<action>',
