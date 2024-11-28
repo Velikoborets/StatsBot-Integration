@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function actionView($id)
     {
         $role = Role::findOne($id);
-        return $this->render('/view', ['role' => $role]);
+        return $this->render('/views', ['role' => $role]);
     }
 
     public function actionUpdate($id)
@@ -35,7 +35,7 @@ class RoleController extends Controller
         $role = Role::findOne($id);
 
         if ($role->load(\Yii::$app->request->post()) && $role->save()) {
-            return $this->redirect(['view', 'id' => $role->id]);
+            return $this->redirect(['views', 'id' => $role->id]);
         }
 
         return $this->render('/update', ['model' => $role]);

@@ -17,5 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Roles', ['/roles'], ['class' => 'btn btn-success']) ?>
     </p>
+    <p>
+        <?= Html::a('Statistic', ['/statistic'], ['class' => 'btn btn-success']) ?>
+    </p>
 
 </div>

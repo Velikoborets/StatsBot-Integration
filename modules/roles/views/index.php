@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <td><?= Html::encode($role->id) ?></td>
             <td><?= Html::encode($role->name) ?></td>
             <td>
-                <?= Html::a('View', ['view', 'id' => $role->id]) ?>
+                <?= Html::a('View', ['views', 'id' => $role->id]) ?>
                 <?= Html::a('Update', ['update', 'id' => $role->id]) ?>
                 <?= Html::a('Delete', ['delete', 'id' => $role->id], [
                     'data-method' => 'post',

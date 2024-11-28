@@ -33,7 +33,7 @@ class UserController extends Controller
     public function actionView($id)
     {
         $user = User::findOne($id);
-        return $this->render('view', ['user' => $user]);
+        return $this->render('views', ['user' => $user]);
     }
 
     public function actionUpdate($id)
@@ -41,7 +41,7 @@ class UserController extends Controller
         $user = User::findOne($id);
 
         if ($user->load(\Yii::$app->request->post()) && $user->save()) {
-            return $this->redirect(['view', 'id' => $user->id]);
+            return $this->redirect(['views', 'id' => $user->id]);
         }
 
         return $this->render('update', ['model' => $user]);

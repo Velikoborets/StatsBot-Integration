@@ -21,6 +21,9 @@ $config = [
         'roles' => [
             'class' => 'app\modules\roles\Module',
         ],
+        'statistic' => [
+            'class' => 'app\modules\statistic\Module',
+        ],
     ],
     'components' => [
         'request' => [
