@@ -6,19 +6,15 @@ $this->title = 'Выберите модуль для управления';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Users', ['/users'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="user-index d-flex justify-content-left">
+    <?= Html::a('Users', ['/users'], ['class' => 'btn btn-success']) ?>
 
-    <p>
-        <?= Html::a('Roles', ['/roles'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <p>
-        <?= Html::a('Statistic', ['/statistic'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?= Html::a('Roles', ['/roles'], ['class' => 'btn btn-success mx-2']) ?>
 
+    <?= Html::a('Statistic', ['/statistic'], ['class' => 'btn btn-success mx-1']) ?>
+
+    <?= Html::a('Pelmen', ['/pelmen'], ['class' => 'btn btn-success mx-1']) ?>
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\ArrayHelper;
+use app\modules\pelmen\components\TelegramLogTarget;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -24,10 +25,12 @@ $config = [
         'statistic' => [
             'class' => 'app\modules\statistic\Module',
         ],
+        'pelmen' => [
+            'class' => 'app\modules\pelmen\Module',
+        ],
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'gIVjMY3XpFn8eiCzztZfOO3qtpahgk8B',
         ],
         'cache' => [
@@ -38,29 +41,28 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/er   ror',
+            'errorAction' => 'site/error',
         ],
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
             'viewPath' => '@app/mail',
-            // send all mails to a file by default.
             'useFileTransport' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets' => ArrayHelper::merge([
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@app/runtime/logs/app.log',
                 ],
-            ],
+            ], require __DIR__ . '/telegramLog.php')['targets'],
         ],
         'db' => $db,
-        // настройка Url - manager
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => $routes, // Используем маршруты из файла
+            'rules' => $routes,
         ],
     ],
     'params' => $params,
@@ -83,7 +85,6 @@ if (YII_ENV_DEV) {
     ];
 }
 
-// Проверяем наличие локального конфигурационного файла
 if (file_exists(__DIR__ . '/web-local.php')) {
     $localConfig = require __DIR__ . '/web-local.php';
     $config = ArrayHelper::merge($config, $localConfig);

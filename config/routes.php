@@ -1,11 +1,14 @@
 <?php
 
 return [
+    // Роут для гл.стр
     '/' => 'site/index',
+
+    // Роут для модуля pelmen
+    '/pelmen' => '/pelmen/rule/index',
 
     // Роут для модуля Статистики
     '/statistic' => '/statistic/statistic/index',
-
 
     // Роуты для модуля пользователей
     '/users' => '/user/user/index',

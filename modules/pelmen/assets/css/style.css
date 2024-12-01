@@ -1,0 +1,7 @@
+html {
+    background-color: black !important; /* Для проверки */
+}
+
+.form-control {
+    color: green;
+}
