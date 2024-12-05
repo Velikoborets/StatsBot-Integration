@@ -4,7 +4,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $statistics app\modules\statistic\models\Statistic[] */
 
-$this->title = 'Результаты анализа';
+$this->title = 'Результат анализа правила';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

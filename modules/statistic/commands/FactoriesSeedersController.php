@@ -8,10 +8,10 @@ use app\modules\statistic\seeders\StatisticSeeder;
 class FactoriesSeedersController extends Controller
 {
     /**
-     * Запускает сидер для таблицы statistics.
-     * @param int $count Количество записей для создания.
+     * push seed for statistics table
+     * @param int $count
      */
-    public function actionSeed($count = 10)
+    public function actionSeed($count)
     {
         StatisticSeeder::seed($count);
         echo "Seeded $count records into the statistics table.\n";

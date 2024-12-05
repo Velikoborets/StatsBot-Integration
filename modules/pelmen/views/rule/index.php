@@ -1,38 +1,61 @@
 <?php
 
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use app\modules\pelmen\models\RuleForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\pelmen\models\RuleForm */
+/* @var $rules app\modules\pelmen\models\Rule[] */
 
-$this->title = 'Задать правила анализа';
+$this->title = 'Мои правила';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="rule-index">
 
-<h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-<div class="rule-form">
+    <p>
+        <?= Html::a('Создать новое правило', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-    <?php $form = ActiveForm::begin(['options'  => ['class' => 'form-inline']]); ?>
-
-    <div class="form-group">
-        <?= $form->field($model, 'column1')->dropDownList(RuleForm::getColumns(), ['class' => 'form-control'])->label(false) ?>
-
-        <?= $form->field($model, 'operator1')->dropDownList(RuleForm::getOperators(), ['class' => 'form-control mx-4'])->label(false) ?>
-
-        <?= $form->field($model, 'value1')->textInput(['class' => 'form-control'])->label(false) ?>
-
-        <?= $form->field($model, 'column2')->dropDownList(RuleForm::getColumns(), ['class' => 'form-control mx-4'])->label(false) ?>
-
-       <?= $form->field($model, 'operator2')->dropDownList(RuleForm::getOperators(), ['class' => 'form-control'])->label(false) ?>
-
-        <?= $form->field($model, 'value2')->textInput(['class' => 'form-control mx-4'])->label(false) ?>
-
-        <?= Html::submitButton('Анализировать', ['class' => 'btn btn-danger btn-submit']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+    <?= GridView::widget([
+        'dataProvider' => new \yii\data\ActiveDataProvider([
+            'query' => \app\modules\pelmen\models\Rule::find()->where(['user_id' => Yii::$app->user->id]),
+        ]),
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'column1',
+            'operator1',
+            'value1',
+            'column2',
+            'operator2',
+            'value2',
+            [
+                'header' => '<div style="text-align: center;">Действия</div>',
+                'class' => ActionColumn::className(),
+                'template' => '{linkTG} &nbsp {result} &nbsp {update} &nbsp {delete}',
+                'buttons' => [
+                    'result' => function ($url, $model, $key) {
+                        return Html::a('Результат анализа', ['result', 'id' => $model->id], ['class' => 'btn  btn-danger']);
+                    },
+                    'linkTG' => function ($url, $model, $key) {
+                        return Html::a('Отправить в tg', ['link-tg', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                    },
+                ],
+                'contentOptions' => ['style' => 'text-align: center;'],
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
+                    if ($action === 'result') {
+                        return Url::toRoute(['result', 'id' => $model->id]);
+                    }
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                },
+            ],
+        ],
+    ]); ?>
+    <p>
+        * Результаты анализа созданных правил автоматически отправляются в твой <i>Telegram каждые 45 минут.</i><br>
+        * <b>Отправить в tg</b> - отправляет результат в telegram мнговенно.<br>
+        * <b>Результат анализа</b> -  показывает результат прямо в Lostools в виде таблицы.
+    </p>
 </div>

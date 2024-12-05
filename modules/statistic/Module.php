@@ -14,7 +14,9 @@ class Module extends \yii\base\Module
 
         // Проверяем, является ли приложение консольным
         if (Yii::$app instanceof \yii\console\Application) {
-            $this->controllerNamespace = 'app\modules\statistic\commands'; // Указываем пространство имен для команд
+
+            // Указываем пространство имен для команд
+            $this->controllerNamespace = 'app\modules\statistic\commands';
         }
     }
 }

@@ -2,6 +2,7 @@
 
 use yii\helpers\ArrayHelper;
 use app\modules\pelmen\components\TelegramLogTarget;
+use app\modules\pelmen\components\AppLogTarget;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -37,7 +38,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'User',
+            'identityClass' => 'app\modules\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -49,14 +50,20 @@ $config = [
             'useFileTransport' => true,
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => ArrayHelper::merge([
+            'traceLevel' => YII_DEBUG,
+            'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                    'logFile' => '@app/runtime/logs/app.log',
+                    'categories' => ['telegram'],
+                    'levels' => ['info'],
+                    'class' => TelegramLogTarget::class,
+                    'botToken' => '7865256460:AAH8grCTlYBOTtJfewzj6U0aCSD6G_hnjZo',
                 ],
-            ], require __DIR__ . '/telegramLog.php')['targets'],
+                [
+                    'categories' => ['local'],
+                    'levels' => ['info'],
+                    'class' => AppLogTarget::class,
+                ],
+            ],
         ],
         'db' => $db,
         'urlManager' => [

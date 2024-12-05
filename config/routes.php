@@ -6,6 +6,10 @@ return [
 
     // Роут для модуля pelmen
     '/pelmen' => '/pelmen/rule/index',
+    '/pelmen/create' => '/pelmen/rule/create',
+    '/pelmen/result/<id:\d+>' => '/pelmen/rule/result',
+    '/pelmen/update/<id:\d+>' => '/pelmen/rule/update',
+    '/pelmen/delete/<id:\d+>' => '/pelmen/rule/delete',
 
     // Роут для модуля Статистики
     '/statistic' => '/statistic/statistic/index',
@@ -16,6 +20,8 @@ return [
     '/users/<id:\d+>' => '/user/user/views',
     '/users/update/<id:\d+>' => '/user/user/update',
     '/users/delete/<id:\d+>' => '/user/user/delete',
+    '/login' => 'user/user/login',
+    '/logout' => 'user/user/logout',
 
     // Роуты для модуля ролей
     '/roles' => '/roles/role/index',
@@ -23,11 +29,6 @@ return [
     '/roles/<id:\d+>' => '/roles/role/views',
     '/roles/update/<id:\d+>' => '/roles/role/update',
     '/roles/delete/<id:\d+>' => '/roles/role/delete',
-
-    // Общие роуты для всех контроллеров
-    // '<controllers:\w+>/<id:\d+>' => '<controllers>/views?id=',
-    // '<controllers:\w+>/<action:\w+>/<id:\d+>' => '<controllers>/<action>',
-    // '<controllers:\w+>/<action:\w+>' => '<controllers>/<action>',
 
     // Общие роуты для модулей
     '<module:\w+>/<controllers:\w+>/<id:\d+>' => '<module>/<controllers>/views?id=',

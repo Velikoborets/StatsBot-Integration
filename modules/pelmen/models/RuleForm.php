@@ -6,6 +6,7 @@ use yii\base\Model;
 
 class RuleForm extends Model
 {
+    public $id;
     public $column1;
     public $operator1;
     public $value1;
@@ -25,13 +26,11 @@ class RuleForm extends Model
     public static function getColumns()
     {
         return [
-            'name' => 'Name',
             'clicks' => 'Clicks',
             'leads' => 'Leads',
             'cost' => 'Cost',
             'profit' => 'Profit',
             'roi' => 'ROI',
-            'date' => 'Date',
         ];
     }
 

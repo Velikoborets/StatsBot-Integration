@@ -14,7 +14,6 @@ class m241128_080803_create_statistics_table extends Migration
      */
     public function safeUp()
     {
-        // Создаем таблицу campaigns
         $this->createTable('statistics', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
@@ -32,7 +31,6 @@ class m241128_080803_create_statistics_table extends Migration
      */
     public function safeDown()
     {
-        // Удаляем таблицу campaigns
         $this->dropTable('statistics');
     }
 }

@@ -6,7 +6,7 @@ use app\modules\statistic\factories\StatisticFactory;
 
 class StatisticSeeder
 {
-    public static function seed($count = 10)
+    public static function seed($count)
     {
         $statistics = StatisticFactory::create($count);
 
