@@ -7,6 +7,7 @@ use yii\base\Model;
 class RuleForm extends Model
 {
     public $id;
+    public $index;
     public $column1;
     public $operator1;
     public $value1;

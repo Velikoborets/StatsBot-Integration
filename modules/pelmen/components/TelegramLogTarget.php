@@ -3,38 +3,32 @@
 namespace app\modules\pelmen\components;
 
 use yii\log\Target;
-use Yii;
 
 class TelegramLogTarget extends Target
 {
     public $botToken;
+    public $chatId;
 
     public function export()
     {
         foreach ($this->messages as $message) {
-            // Извлекаем только текстовое сообщение из лог-сообщения
-            list($data) = $message;
 
-            if (is_array($data) && count($data) == 2) {
-                $telegramNickname = $data[0];
-                $text = $data[1];
+            list($text) = $message;
 
-                // Удаляем лишнюю информацию из текста
-                if (strpos($text, '$_GET') !== false || strpos($text, '$_POST') !== false) {
-                    continue; // Пропускаем сообщения с ненужной информацией
-                }
-
-                // Отправляем сообщение в Telegram
-                $this->sendMessage($telegramNickname, $text);
+            if (strpos($text, '$_GET') !== false || strpos($text, '$_POST') !== false) {
+                continue;
             }
+
+            $this->sendMessage($text);
         }
     }
 
-    protected function sendMessage($telegramNickname, $message)
+    protected function sendMessage($message)
     {
         $url = "https://api.telegram.org/bot{$this->botToken}/sendMessage";
+
         $data = [
-            'telegram_nickname' => $telegramNickname,
+            'chat_id' => $this->chatId,
             'text' => $message,
         ];
 

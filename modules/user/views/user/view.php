@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'telegram_nickname',
+            'telegram_id',
             'email:email',
             'created_at',
             'updated_at',

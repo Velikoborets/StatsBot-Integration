@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\user\models;
 
 use Yii;
@@ -13,7 +12,7 @@ use app\modules\roles\models\Role;
  * @property string $username
  * @property string $email
  * @property int|null $role_id
- * @property string $telegram_nickname
+ * @property string|null $telegram_id
  * @property string $created_at
  * @property string|null $updated_at
  *
@@ -29,10 +28,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email', 'role_id', 'telegram_nickname'], 'required'],
+            [['username', 'email', 'role_id', 'telegram_id'], 'required'],
             [['role_id'], 'integer'],
-            [['username', 'email', 'telegram_nickname'], 'string', 'max' => 255],
-            [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
+            [['username', 'email', 'telegram_id'], 'string', 'max' => 255],
+            [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class,
+                'targetAttribute' => ['role_id' => 'id']],
         ];
     }
 
@@ -43,7 +43,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'username' => 'Username',
             'email' => 'Email',
             'role_id' => 'Role ID',
-            'telegram_nickname' => 'Telegram Nickname',
+            'telegram_id' => 'Telegram ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -61,7 +61,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        // Implement token-based authentication if needed
         return null;
     }
 
@@ -72,11 +71,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        return null;  // Implement if needed
+        return null;
     }
 
     public function validateAuthKey($authKey)
     {
-        return false;  // Implement if needed
+        return false;
     }
 }

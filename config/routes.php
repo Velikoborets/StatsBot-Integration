@@ -10,6 +10,7 @@ return [
     '/pelmen/result/<id:\d+>' => '/pelmen/rule/result',
     '/pelmen/update/<id:\d+>' => '/pelmen/rule/update',
     '/pelmen/delete/<id:\d+>' => '/pelmen/rule/delete',
+    '/pelmen/link-tg/<id:\d+>' => '/pelmen/rule/link-tg',
 
     // Роут для модуля Статистики
     '/statistic' => '/statistic/statistic/index',

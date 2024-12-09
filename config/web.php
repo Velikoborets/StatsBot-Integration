@@ -57,6 +57,7 @@ $config = [
                     'levels' => ['info'],
                     'class' => TelegramLogTarget::class,
                     'botToken' => '7865256460:AAH8grCTlYBOTtJfewzj6U0aCSD6G_hnjZo',
+                    'chatId' => -4577403143,
                 ],
                 [
                     'categories' => ['local'],

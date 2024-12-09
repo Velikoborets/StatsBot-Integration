@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $statistics app\modules\statistic\models\Statistic[] */
 
 $this->title = 'Результат анализа правила';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Мои правила', 'url' => '/pelmen'];
 ?>
 
 <h1><?= Html::encode($this->title) ?></h1>
